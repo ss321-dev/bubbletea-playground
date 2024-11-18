@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"path/filepath"
 
 	tea "github.com/charmbracelet/bubbletea"
 
@@ -12,7 +13,12 @@ import (
 )
 
 func main() {
-	todos, err := entity.LoadTodo()
+	exePath, err := os.Executable()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	todos, err := entity.LoadTodo(filepath.Dir(filepath.Clean(exePath)))
 	if err != nil {
 		log.Fatal(err)
 	}

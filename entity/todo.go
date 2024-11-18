@@ -38,8 +38,8 @@ func SaveTodo(todos Todos) error {
 	return os.WriteFile(filePath, fileData, 0644)
 }
 
-func LoadTodo() (Todos, error) {
-	filePath, err := filepath.Abs(fmt.Sprintf("./%v", todoFile))
+func LoadTodo(exePath string) (Todos, error) {
+	filePath, err := filepath.Abs(fmt.Sprintf("%s/%s", exePath, todoFile))
 	if err != nil {
 		return nil, err
 	}
