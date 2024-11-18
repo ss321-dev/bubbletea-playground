@@ -1,9 +1,6 @@
-# TODOアプリを作りたい
+# bubble tea playground
 
-
-
-
-## What is bubble tea?
+## what is bubble tea?
 
 <p>
     <a href="https://stuff.charm.sh/bubbletea/bubbletea-4k.png"><img src="https://github.com/charmbracelet/bubbletea/assets/25087/108d4fdb-d554-4910-abed-2a5f5586a60e" width="313" alt="Bubble Tea Title Treatment"></a><br>
@@ -25,4 +22,7 @@ Bubble Teaは本番環境で使用されており、私たちが途中で追加�
     <img src="https://stuff.charm.sh/bubbletea/bubbletea-example.gif" width="100%" alt="Bubble Tea Example">
 </p>
 
-
+## build
+```shell
+   go build -o todo main.go
+```
