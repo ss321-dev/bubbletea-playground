@@ -2,13 +2,12 @@ package entity
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"path/filepath"
 	"time"
 )
 
-const todoFile = ".todo.json"
+const todoFileName = ".todo.json"
 
 type Todo struct {
 	Task      string `json:"task"`
@@ -25,26 +24,16 @@ func NewTodo(task string) Todo {
 	return Todo{Task: task, CreatedAt: time.Now().Format(time.DateOnly)}
 }
 
-func SaveTodo(todos Todos) error {
-	filePath, err := filepath.Abs(fmt.Sprintf("./%v", todoFile))
-	if err != nil {
-		return err
-	}
-
+func SaveTodo(path string, todos Todos) error {
 	fileData, err := json.Marshal(todos)
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(filePath, fileData, 0644)
+	return os.WriteFile(filepath.Join(path, todoFileName), fileData, 0644)
 }
 
-func LoadTodo(exePath string) (Todos, error) {
-	filePath, err := filepath.Abs(fmt.Sprintf("%s/%s", exePath, todoFile))
-	if err != nil {
-		return nil, err
-	}
-
-	fileData, err := os.ReadFile(filePath)
+func LoadTodo(path string) (Todos, error) {
+	fileData, err := os.ReadFile(filepath.Join(path, todoFileName))
 	if err != nil {
 		if os.IsNotExist(err) {
 			return Todos{}, nil

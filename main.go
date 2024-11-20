@@ -17,8 +17,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	path := filepath.Dir(filepath.Clean(exePath))
 
-	todos, err := entity.LoadTodo(filepath.Dir(filepath.Clean(exePath)))
+	todos, err := entity.LoadTodo(path)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -30,7 +31,7 @@ func main() {
 
 	state := model.NewState(todos, viewState)
 	defer func() {
-		if err := entity.SaveTodo(state.Todos); err != nil {
+		if err := entity.SaveTodo(path, state.Todos); err != nil {
 			log.Fatal(err)
 		}
 	}()
