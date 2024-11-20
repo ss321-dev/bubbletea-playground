@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	
+
 	"github.com/ss321-dev/bubbletea-playground/entity"
 	"github.com/ss321-dev/bubbletea-playground/option"
 )
@@ -52,7 +52,7 @@ func ListView(todos entity.Todos) string {
 }
 
 func InputView(textView string) string {
-	return fmt.Sprintf("%s\n\n%s\n", textView, pleaseExitText)
+	return fmt.Sprintf("%s", textView)
 }
 
 func UpdateView(current int, todos entity.Todos) string {
